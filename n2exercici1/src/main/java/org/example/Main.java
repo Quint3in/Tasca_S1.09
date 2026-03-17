@@ -2,6 +2,9 @@ package org.example;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,7 +33,7 @@ public class Main {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
+        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy");
         System.out.println("---------------------------------");
         System.out.println("Fecha con distintos formatos");
         System.out.println(ldt2.format(formatter));
@@ -40,8 +43,27 @@ public class Main {
         System.out.println("---------------------------------");
         System.out.println("Fecha anterior a hoy");
         System.out.println(ldt2.toString() + " - " + isPastDate(ldt2));
+
+        List<LocalDateTime> agenda = new ArrayList<>();
+        agenda.add(LocalDateTime.now().minusDays(2));
+        agenda.add(LocalDateTime.now().plusHours(3));
+        agenda.add(LocalDateTime.now().plusDays(1));
+        agenda.add(LocalDateTime.now().plusDays(7).withHour(9).withMinute(30));
+        agenda.add(LocalDateTime.now().minusHours(5));
+
+        System.out.println("---------------------------------");
+        System.out.println("Cites properes");
+        printUpcomingAppointments(agenda, formatter3);
     }
     private static boolean isPastDate(LocalDateTime d) {
         return d.isBefore(LocalDateTime.now());
+    }
+
+    private static void printUpcomingAppointments(List<LocalDateTime> agenda, DateTimeFormatter formatter) {
+        LocalDateTime now = LocalDateTime.now();
+        agenda.stream()
+                .filter(dateTime -> !dateTime.isBefore(now))
+                .sorted(Comparator.naturalOrder())
+                .forEach(dateTime -> System.out.println(dateTime.format(formatter)));
     }
 }
