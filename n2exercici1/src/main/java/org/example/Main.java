@@ -3,7 +3,7 @@ package org.example;
 import java.time.*;
 
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
         LocalDate ld = LocalDate.now();
         LocalTime lt = LocalTime.now();
         LocalDateTime ldt1 = LocalDateTime.now();
@@ -20,5 +20,9 @@ public class Main {
         System.out.println("Diferencia en dias y horas");
         System.out.println(period1.getDays());
         System.out.println(duration1.toHours());
+
+        ldt2 = ldt2.plusYears(5).plusMonths(1).minusYears(10).minusHours(20);
+        System.out.println("Restar/Sumar a la fecha");
+        System.out.println(ldt2.toString());
     }
 }
