@@ -1,13 +1,12 @@
 package org.example;
 
 public class Main {
-    enum Day {
-        Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-    }
-
     public static void main(String[] args) {
         Day d = Day.Monday;
         printDayType(d);
+
+        Task t1 = new Task(Level.MEDIUM);
+        t1.showBehavior();
     }
 
     static void printDayType(Day day) {
