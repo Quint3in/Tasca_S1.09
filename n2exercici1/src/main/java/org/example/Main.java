@@ -38,6 +38,10 @@ public class Main {
         System.out.println(ldt2.format(formatter3));
 
         System.out.println("---------------------------------");
-
+        System.out.println("Fecha anterior a hoy");
+        System.out.println(ldt2.toString() + " - " + isPastDate(ldt2));
+    }
+    private static boolean isPastDate(LocalDateTime d) {
+        return d.isBefore(LocalDateTime.now());
     }
 }
