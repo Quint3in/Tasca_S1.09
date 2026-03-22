@@ -15,6 +15,20 @@ and `Duration`, adds and subtracts time units, formats dates with
 multiple patterns, checks whether a date is in the past, and lists 
 upcoming appointments in chronological order.
 
+## Level 3 Exercise 1
+**Description**: Introduces Java `record` usage with a `Person` record
+that includes field validation in a compact constructor. It defines
+a custom method (`kill`) that prints a simple message, and the `Main`
+class demonstrates record instantiation, constructor validation with
+exception handling, and a lambda/stream pipeline that filters and
+prints adults from a list.
+
+Comment on the differences in readability and usefulness between a record and a traditional class:
+A record is shorter and clearer for simple, immutable data. 
+A traditional class is more verbose but more flexible when 
+you need mutability or complex behavior.
+
+
 ## Technologies
 - Backend: Java - Maven
 
