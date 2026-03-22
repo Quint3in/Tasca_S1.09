@@ -1,6 +1,8 @@
 package org.example;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,12 +19,26 @@ public class Main {
         try {
             Person p3 = new Person("James", -1);
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println("ERROR: "+e.getMessage());
         }
         try {
             Person p4 = new Person("", 23);
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println("ERROR: "+e.getMessage());
         }
+
+        System.out.println("\nLambdas");
+        List<Person> personList = new ArrayList<>(
+                List.of(
+                        p1,
+                        p2,
+                        new Person("Ethan", 16),
+                        new Person("Mateo", 15)
+                )
+        );
+
+        personList.stream()
+                .filter( person -> person.age()>18)
+                .forEach(System.out::println);
     }
 }
