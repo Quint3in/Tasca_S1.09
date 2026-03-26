@@ -1,24 +1,15 @@
 package org.example;
 
 public enum Level {
-    LOW {
-        @Override
-        public String getColor() {
-            return "Green";
-        }
-    },
-    MEDIUM {
-        @Override
-        public String getColor() {
-            return "Yellow";
-        }
-    },
-    HIGH {
-        @Override
-        public String getColor() {
-            return "Red";
-        }
-    };
+    LOW("Green"),
+    MEDIUM("Yellow"),
+    HIGH("Red");
 
-    public abstract String getColor();
+    private final String color;
+    Level(String color) {
+        this.color = color;
+    }
+    public String getColor() {
+        return color;
+    }
 }

@@ -1,6 +1,5 @@
 package org.example;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class Main {
         );
 
         personList.stream()
-                .filter( person -> person.age()>18)
+                .filter( person -> person.age()>=18)
                 .forEach(System.out::println);
     }
 }

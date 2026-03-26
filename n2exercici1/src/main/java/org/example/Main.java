@@ -2,9 +2,6 @@ package org.example;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,9 +10,9 @@ public class Main {
         LocalDateTime ldt1 = LocalDateTime.now();
 
 
-        System.out.println(ld.toString());
-        System.out.println(lt.toString());
-        System.out.println(ldt1.toString());
+        System.out.println(ld);
+        System.out.println(lt);
+        System.out.println(ldt1);
 
         LocalDateTime ldt2 = ldt1.plusDays(5).plusHours(10);
 
@@ -29,7 +26,7 @@ public class Main {
         ldt2 = ldt2.plusYears(5).plusMonths(1).minusYears(10).minusHours(20);
         System.out.println("---------------------------------");
         System.out.println("Restar/Sumar a la fecha");
-        System.out.println(ldt2.toString());
+        System.out.println(ldt2);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -42,28 +39,12 @@ public class Main {
 
         System.out.println("---------------------------------");
         System.out.println("Fecha anterior a hoy");
-        System.out.println(ldt2.toString() + " - " + isPastDate(ldt2));
-
-        List<LocalDateTime> agenda = new ArrayList<>();
-        agenda.add(LocalDateTime.now().minusDays(2));
-        agenda.add(LocalDateTime.now().plusHours(3));
-        agenda.add(LocalDateTime.now().plusDays(1));
-        agenda.add(LocalDateTime.now().plusDays(7).withHour(9).withMinute(30));
-        agenda.add(LocalDateTime.now().minusHours(5));
+        System.out.println(ldt2 + " - " + ldt2.isBefore(LocalDateTime.now()));
 
         System.out.println("---------------------------------");
         System.out.println("Cites properes");
-        printUpcomingAppointments(agenda, formatter3);
-    }
-    private static boolean isPastDate(LocalDateTime d) {
-        return d.isBefore(LocalDateTime.now());
-    }
 
-    private static void printUpcomingAppointments(List<LocalDateTime> agenda, DateTimeFormatter formatter) {
-        LocalDateTime now = LocalDateTime.now();
-        agenda.stream()
-                .filter(dateTime -> !dateTime.isBefore(now))
-                .sorted(Comparator.naturalOrder())
-                .forEach(dateTime -> System.out.println(dateTime.format(formatter)));
+        Schedule schedule = new Schedule();
+        schedule.printUpcomingAppointments(formatter3);
     }
 }

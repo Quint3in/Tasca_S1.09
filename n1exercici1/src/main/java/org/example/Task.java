@@ -1,18 +1,21 @@
 package org.example;
 
 public class Task {
-    private Level level;
+    private final Level level;
+    private final String body;
+    private final String title;
+    private boolean done;
 
-    public Task(Level level) {
+
+    public Task(Level level, String body, String title) {
         this.level = level;
+        this.done = false;
+        this.body = body;
+        this.title = title;
     }
 
     public Level getLevel() {
         return level;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
     }
 
     public void showBehavior() {
@@ -21,5 +24,19 @@ public class Task {
             case MEDIUM -> System.out.println("Mid Level");
             case HIGH -> System.out.println("High Level");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "level=" + level +
+                ", body='" + body + '\'' +
+                ", title='" + title + '\'' +
+                ", done=" + done +
+                '}';
+    }
+
+    public void closeTask() {
+        done = true;
     }
 }
